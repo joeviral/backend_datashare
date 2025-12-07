@@ -47,11 +47,11 @@ form.addEventListener('submit', async (e) => {
   result.textContent = 'Sending confirmation...';
 
   try{
-    const res = await fetch('https://backend-datashare-1.onrender.com/api/gift', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify(payload)
-    });
+    const res = await fetch("https://backend-datashare-1.onrender.com/api/buy-airtime", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ network, phone, amount })
+});
 
     const data = await res.json();
 
