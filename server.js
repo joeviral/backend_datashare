@@ -10,6 +10,11 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// ===== TEST ROUTE (Fix for "Cannot GET /api/test") =====
+app.get("/api/test", (req, res) => {
+    res.json({ success: true, message: "API is working correctly!" });
+});
+
 // ===== ADMIN LOGIN =====
 const ADMIN_USERNAME = "admin";
 const ADMIN_PASSWORD = "12345";  // change later or move to .env
@@ -21,7 +26,7 @@ app.post("/api/admin/login", (req, res) => {
         return res.json({
             success: true,
             message: "Login successful",
-            token: "admin-token-123" // frontend stores this
+            token: "admin-token-123"
         });
     }
 
@@ -36,7 +41,6 @@ app.post("/api/buy-airtime", (req, res) => {
         return res.json({ success: false, message: "All fields required" });
     }
 
-    // Later: Call real API (e.g. VTU, Clubkonnect, etc.)
     return res.json({
         success: true,
         message: "Airtime purchase successful",
